@@ -26,7 +26,7 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_CERTIFICATE := platform
-LOCAL_REQUIRED_MODULES := su daemonsu 99SuperSuDaemon install-recovery.sh supolicy
+LOCAL_REQUIRED_MODULES := su daemonsu 99SuperSuDaemon install-recovery.sh supolicy .installed_su_daemon
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
@@ -42,7 +42,15 @@ LOCAL_MODULE := install-recovery.sh
 LOCAL_SRC_FILES := common/install-recovery.sh
 LOCAL_MODULE_CLASS := ETC
 LOCAL_MODULE_TAGS := optional
-LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)/init.d
+LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := .installed_su_daemon
+LOCAL_SRC_FILES := common/.installed_su_daemon
+LOCAL_MODULE_CLASS := ETC
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_PATH := $(TARGET_OUT_ETC)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
